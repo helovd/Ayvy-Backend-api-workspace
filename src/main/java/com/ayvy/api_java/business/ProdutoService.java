@@ -1,7 +1,6 @@
 package com.ayvy.api_java.business;
 
 import com.ayvy.api_java.infrastructure.entitys.Produto;
-import com.ayvy.api_java.infrastructure.repository.ClienteRepository;
 import com.ayvy.api_java.infrastructure.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 

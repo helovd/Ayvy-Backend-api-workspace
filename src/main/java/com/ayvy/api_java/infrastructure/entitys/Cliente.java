@@ -22,15 +22,28 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    //Adicionando a ligação com a entidade endereço:
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "enderecoId")
+    private Endereco endereco;
+
     @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "nome")
     private String nome;
 
+    //!Utilizando String, por enquanto, já que LocalDate só permite com a inclusão de milissegundos
+    @Column(name = "dataNascimento")
+    private String dataNascimento;
+
     @Column(name = "cpf", unique = true)
     private String cpf;
 
     @Column(name = "telefone", unique = true)
     private String telefone;
+
+    //!Necessário avaliação de segurança!
+    @Column(name = "senha")
+    private String senha;
 }

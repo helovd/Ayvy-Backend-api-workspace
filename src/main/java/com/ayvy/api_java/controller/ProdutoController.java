@@ -33,7 +33,7 @@ public class ProdutoController {
     //Para deletar:
     @DeleteMapping
     public ResponseEntity<Void> deletarProdutoPorId(@RequestParam Long id){
-        ProdutoService.deletarProdutoPorId(id);
+        produtoService.deletarProdutoPorId(id);
         return ResponseEntity.ok().build();
     }
 
@@ -41,10 +41,11 @@ public class ProdutoController {
     @PutMapping
     public ResponseEntity<Void> atualizarProdutoPorId(@RequestParam long id,
                                                       @RequestBody Produto produto){
-        ProdutoService.atualizarProdutoPorId(id);
+        produtoService.atualizarProdutoPorId(id, produto);
         return ResponseEntity.ok().build();
     }
-
 }
+
+
 
 

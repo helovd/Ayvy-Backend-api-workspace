@@ -52,10 +52,19 @@ public class ClienteService {
         Cliente clienteAtualizado = Cliente.builder()
                 .email(cliente.getEmail() != null ?
                         cliente.getEmail() : clienteEntity.getEmail())
+
                 .nome(cliente.getNome() != null ?
                         cliente.getNome() : clienteEntity.getNome())
+
+                .dataNascimento(cliente.getDataNascimento() != null ?
+                        cliente.getDataNascimento() : clienteEntity.getDataNascimento())
+
                 .telefone(cliente.getTelefone() != null ?
                         cliente.getTelefone() : clienteEntity.getTelefone())
+
+                .senha(cliente.getSenha() != null ?
+                        cliente.getSenha() : clienteEntity.getSenha())
+
                 //CPF e Id não serão alterados:
                 .cpf(clienteEntity.getCpf())
                 .id(clienteEntity.getId())
