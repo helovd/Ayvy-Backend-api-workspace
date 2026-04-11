@@ -2,7 +2,6 @@ package com.ayvy.api_java.business;
 
 import com.ayvy.api_java.infrastructure.entitys.Endereco;
 import com.ayvy.api_java.infrastructure.repository.EnderecoRepository;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,30 +14,36 @@ public class EnderecoService {
 
     //Criar CRUD
 
+    //create
     public void salvarEndereco(Endereco endereco) {
         this.repository.saveAndFlush(endereco);
     }
 
-    public Endereco findByCep(String cep) {
+    //read
+    public Endereco buscarEnderecoPorId(Long id) {
 
-        return this.repository.findByCep(cep).orElseThrow(
+        return this.repository.findById(id).orElseThrow(
                 () -> new RuntimeException("Endereço não encontrado")
         );
     }
-
+    //delete
     public void deletarEnderecoPorId(Long id){
         repository.deleteById(id);
     }
-    /*
+
+    //update
     public void atualizarEnderecoPorId(Long id, Endereco endereco) {
         Endereco enderecoEntity = repository.findById(id).orElseThrow(
                 () -> new RuntimeException("Endereço não encontrado")
         );
 
-        Endereco = enderecoAtualizado = Endereco.builder()
+        Endereco enderecoAtualizado = Endereco.builder()
                 .cep(endereco.getCep() != null ?
-                        endereco.getCep : enderecoEntity.getCep())
+                        endereco.getCep() : enderecoEntity.getCep())
+                .numero(endereco.getNumero() != null ?
+                        endereco.getNumero() : enderecoEntity.getNumero())
+                .id(enderecoEntity.getId())
                 .build();
     }
-    */
+
 }

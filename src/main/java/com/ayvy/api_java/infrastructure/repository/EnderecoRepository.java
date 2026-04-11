@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
 
-    Optional<Endereco> findByCep(String cep);
+   // Optional<Endereco> findByCep(String cep);
 
     @Transactional
     void deleteEnderecoById(Long id);
