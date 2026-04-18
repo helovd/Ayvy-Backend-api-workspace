@@ -20,7 +20,7 @@ public class Cliente {
     //Cria um valor automáticamente:
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     //Adicionando a ligação com a entidade endereço:
     @OneToOne(cascade = CascadeType.ALL)

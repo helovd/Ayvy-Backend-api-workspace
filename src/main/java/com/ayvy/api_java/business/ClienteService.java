@@ -44,7 +44,7 @@ public class ClienteService {
     }
 
     //Atualizar os dados do cliente 'Update':
-    public void atualizarClientePorId(Long id, Cliente cliente){
+    public void atualizarClientePorId(Integer id, Cliente cliente){
         Cliente clienteEntity = repository.findById(id).orElseThrow(
                 () -> new RuntimeException("Usuário/cliente não encontrado")
         );

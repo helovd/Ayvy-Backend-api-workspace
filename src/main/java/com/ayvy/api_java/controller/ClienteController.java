@@ -39,7 +39,7 @@ public class ClienteController {
 
     //Fazer alterações em TODOS os campos:
     @PutMapping
-    public ResponseEntity<Void> atualizarClientePorId(@RequestParam long id,
+    public ResponseEntity<Void> atualizarClientePorId(@RequestParam Integer id,
                                                       @RequestBody Cliente cliente){
         clienteService.atualizarClientePorId(id, cliente);
         return ResponseEntity.ok().build();
