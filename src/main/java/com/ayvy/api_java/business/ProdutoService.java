@@ -27,7 +27,7 @@ public class ProdutoService {
     }
 
     //"READ"
-    public Produto buscarProdutoPorId(Long id){
+    public Produto buscarProdutoPorId(Integer id){
 
         return repository.findById(id).orElseThrow(
                 () -> new RuntimeException("Produto não encontrado")
@@ -40,7 +40,7 @@ public class ProdutoService {
     }
 
     //"UPDATDE"
-    public void atualizarProdutoPorId(Long id, Produto produto){
+    public void atualizarProdutoPorId(Integer id, Produto produto){
         Produto produtoEntity =  buscarProdutoPorId(id);
 
         Produto produtoAtualizado = Produto.builder()

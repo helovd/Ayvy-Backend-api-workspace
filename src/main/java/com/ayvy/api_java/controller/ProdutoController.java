@@ -26,7 +26,7 @@ public class ProdutoController {
 
     //Para buscar:
     @GetMapping
-    public ResponseEntity<Produto> buscarProdutoPorId(@RequestParam Long id) {
+    public ResponseEntity<Produto> buscarProdutoPorId(@RequestParam Integer id) {
         return ResponseEntity.ok(produtoService.buscarProdutoPorId(id));
     }
 
@@ -39,7 +39,7 @@ public class ProdutoController {
 
     //Fazer alterações em TODOS os campos:
     @PutMapping
-    public ResponseEntity<Void> atualizarProdutoPorId(@RequestParam long id,
+    public ResponseEntity<Void> atualizarProdutoPorId(@RequestParam Integer id,
                                                       @RequestBody Produto produto){
         produtoService.atualizarProdutoPorId(id, produto);
         return ResponseEntity.ok().build();

@@ -17,6 +17,7 @@ public class ClienteController {
     public ClienteController(ClienteService clienteService) {
         this.clienteService = clienteService;
     }
+
     //Para gravar dados:
     @PostMapping
     public ResponseEntity<Void> salvarCliente(@RequestBody Cliente cliente) {  //Necessário alterar para DTO

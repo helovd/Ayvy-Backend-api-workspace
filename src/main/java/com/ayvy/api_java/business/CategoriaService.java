@@ -11,13 +11,13 @@ public class CategoriaService {
 
     public CategoriaService(CategoriaRepository repository) {this.repository = repository;}
 
-//CREATE
+    //CREATE
     public void salvarCategoria(Categoria categoria){
         repository.saveAndFlush(categoria);
     }
 
-//READ
-    public Categoria buscarCategoriaNome_categoria(String nome_categoria){
+    //READ
+    public Categoria buscarCategoriaPorNome_categoria(String nome_categoria){
 
         return repository.findByNome_categoria(nome_categoria).orElseThrow(
                 //Uma exceção personalizada:
@@ -25,15 +25,25 @@ public class CategoriaService {
         );
     }
 
-//DELETE
+    //DELETE
     public void deletarCategoriaPorId(Integer id) {
         repository.deleteById(id);
     }
 
 
 //UPDATE
-   // public void atualizarCategoriaPorId(Integer id, Categoria categoria){
-      //  Categoria categoriaRepository = repository.findById(id)
-  //  }
+     public void atualizarCategoriaPorId(Integer id, Categoria categoria){
+         Categoria categoriaEntity = repository.findById(id).orElseThrow(
+                 () -> new RuntimeException("Categoria não encontrada")
+         );
+
+         Categoria categoriaAtualizado = Categoria.builder()
+                 .id(categoriaEntity.getId())
+                 .nome_categoria(categoria.getNome_categoria() != null ?
+                         categoria.getNome_categoria() : categoriaEntity.getNome_categoria())
+                 .build();
+
+         repository.saveAndFlush(categoriaAtualizado);
+      }
 
 }
