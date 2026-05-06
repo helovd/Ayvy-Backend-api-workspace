@@ -29,7 +29,7 @@ public class MensagemService {
         repository.deleteById(id);
     }
 
-    //UPDATE
+    //UPDATE - ou Editar mensagem no futuro
     public void atualizarMensagemPorId(Integer id, Mensagem mensagem){
         Mensagem mensagemEntity = repository.findById(id).orElseThrow(
                 () -> new RuntimeException("Mensagem não encontrada")
