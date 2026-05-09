@@ -32,18 +32,21 @@ public class EnderecoService {
     }
 
     //update
-    public void atualizarEnderecoPorId(Long id, Endereco endereco) {
-        Endereco enderecoEntity = repository.findById(id).orElseThrow(
-                () -> new RuntimeException("Endereço não encontrado")
-        );
+    public Endereco atualizarEnderecoPorId(Long id, Endereco endereco) {
+        Endereco enderecoEntity = repository.findById(id)
+                .orElseThrow(
+                        () -> new RuntimeException("Endereço não encontrado")
+                );
 
-        Endereco enderecoAtualizado = Endereco.builder()
-                .cep(endereco.getCep() != null ?
-                        endereco.getCep() : enderecoEntity.getCep())
-                .numero(endereco.getNumero() != null ?
-                        endereco.getNumero() : enderecoEntity.getNumero())
-                .id(enderecoEntity.getId())
-                .build();
+        if (endereco.getCep() != null) {
+            enderecoEntity.setCep(endereco.getCep());
+        }
+
+        if (endereco.getNumero() != null) {
+            enderecoEntity.setNumero(endereco.getNumero());
+        }
+
+        return repository.saveAndFlush(enderecoEntity);
     }
 
 }

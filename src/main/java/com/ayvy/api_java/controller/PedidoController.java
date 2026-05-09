@@ -31,11 +31,12 @@ public class PedidoController {
         return ResponseEntity.ok().build();
     }
 
+    /* !!! EXPLICAÇÃO NA SERVICE =================================
     @PutMapping
     public ResponseEntity<Void> atualizarPedidoPorId(@RequestParam int id,
                                                     @RequestBody Pedido pedido) {
         pedidoService.atualizarPedidoPorId(id, pedido);
         return ResponseEntity.ok().build();
-    }
+    }*/
 
 }

@@ -40,6 +40,7 @@ public class Cliente {
     @Column(name = "cpf", unique = true)
     private String cpf;
 
+    //permitir apenas números? a organização, como em telefone o padrão '11 9xxxx-xxxx', é com o front?
     @Column(name = "telefone", unique = true)
     private String telefone;
 

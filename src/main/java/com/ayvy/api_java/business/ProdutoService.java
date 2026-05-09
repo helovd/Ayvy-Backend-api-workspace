@@ -43,6 +43,19 @@ public class ProdutoService {
     public void atualizarProdutoPorId(Integer id, Produto produto){
         Produto produtoEntity =  buscarProdutoPorId(id);
 
+        if(produto.getNome_produto() != null){
+            produtoEntity.setNome_produto(produto.getNome_produto());
+        }
+        if(produto.getPreco() != null){
+        produtoEntity.setPreco(produto.getPreco());
+        }
+
+        repository.saveAndFlush(produtoEntity);
+
+    }
+
+
+        /* ========= ! FORMA ANTIGA ! =============================================
         Produto produtoAtualizado = Produto.builder()
                 .nome_produto(produto.getNome_produto() != null ?
                         produto.getNome_produto() : produtoEntity.getNome_produto())
@@ -52,7 +65,7 @@ public class ProdutoService {
                 .build();
 
                 repository.saveAndFlush(produtoAtualizado);
-    }
+    }*/
 
 
 

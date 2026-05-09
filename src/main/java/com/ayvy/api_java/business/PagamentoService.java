@@ -33,6 +33,22 @@ public class PagamentoService {
     public void atualizarPagamentoPorId(Integer id, Pagamento pagamento){
         Pagamento pagamentoEntity = buscarPagamentoPorId(id);
 
+        if(pagamento.getTipo()!=null){
+        pagamentoEntity.setTipo(pagamento.getTipo());}
+
+        if(pagamento.getStatus()!=null){
+            pagamentoEntity.setStatus(pagamento.getStatus());
+        }
+
+        //É permitido alterar o valor de pagamento? O do pedido é finalizado, logo não altera.
+        // É necessário Entity Carrinho para essa alteração então?
+        if(pagamento.getValor()!=null){
+            pagamentoEntity.setValor(pagamento.getValor());
+        }
+
+        repository.saveAndFlush(pagamentoEntity);
+    }
+        /* ========= ! FORMA ANTIGA ! =============================================
         Pagamento pagamentoAtualizado = Pagamento.builder()
                 .tipo(pagamento.getTipo() != null ?
                         pagamento.getTipo() : pagamentoEntity.getTipo())
@@ -45,6 +61,5 @@ public class PagamentoService {
                 .build();
 
         repository.saveAndFlush(pagamentoAtualizado);
-
-    }
+    }*/
 }

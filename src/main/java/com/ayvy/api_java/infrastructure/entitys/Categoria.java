@@ -17,7 +17,6 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    //permitir apenas números? a organização, como em telefone o padrão '11 9xxxx-xxxx', é com o front?
     @Column(name = "nome_categoria")
     private String nomeCategoria;
 

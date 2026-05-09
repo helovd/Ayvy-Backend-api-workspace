@@ -32,11 +32,17 @@ public class CategoriaService {
 
 
 //UPDATE
-     public void atualizarCategoriaPorId(Integer id, Categoria categoria){
+     public Categoria atualizarCategoriaPorId(Integer id, Categoria categoria){
          Categoria categoriaEntity = repository.findById(id).orElseThrow(
                  () -> new RuntimeException("Categoria não encontrada")
          );
 
+         if(categoria.getNomeCategoria() != null){
+         categoriaEntity.setNomeCategoria(categoria.getNomeCategoria());}
+
+         return repository.saveAndFlush(categoriaEntity);
+     }
+          /* ========= ! FORMA ANTIGA ! =============================================
          Categoria categoriaAtualizado = Categoria.builder()
                  .id(categoriaEntity.getId())
                  .nomeCategoria(categoria.getNomeCategoria() != null ?
@@ -44,6 +50,6 @@ public class CategoriaService {
                  .build();
 
          repository.saveAndFlush(categoriaAtualizado);
-      }
+      }*/
 
 }

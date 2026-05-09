@@ -27,7 +27,7 @@ public class Produto {
     private String nome_produto;
 
     @Column(name = "preco")
-    private Integer preco;
+    private Float preco;
 
     //Faltam:
     //Descrição String

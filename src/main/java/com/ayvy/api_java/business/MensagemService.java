@@ -30,11 +30,18 @@ public class MensagemService {
     }
 
     //UPDATE - ou Editar mensagem no futuro
-    public void atualizarMensagemPorId(Integer id, Mensagem mensagem){
+    public Mensagem atualizarMensagemPorId(Integer id, Mensagem mensagem){
         Mensagem mensagemEntity = repository.findById(id).orElseThrow(
                 () -> new RuntimeException("Mensagem não encontrada")
         );
 
+        if(mensagem.getTexto() != null){
+        mensagemEntity.setTexto(mensagem.getTexto());}
+
+        return repository.saveAndFlush(mensagemEntity);
+    }
+
+  /* ========= ! FORMA ANTIGA ! =============================================
         //Talvez possamos reomear para 'editada' depois
         Mensagem mensagemAtualizada = Mensagem.builder()
                 .texto(mensagem.getTexto() != null ?
@@ -44,5 +51,5 @@ public class MensagemService {
                 .dataRecebimento(mensagemEntity.getDataRecebimento())
                 .id(mensagemEntity.getId())
                 .build();
-    }
+    }*/
 }

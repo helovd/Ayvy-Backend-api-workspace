@@ -33,7 +33,7 @@ public class CategoriaController {
     }
 
     @PutMapping
-    public ResponseEntity<Void> atualizarCategoriaPorId(@RequestBody Integer id,
+    public ResponseEntity<Void> atualizarCategoriaPorId(@RequestParam Integer id,
                                                         @RequestBody Categoria categoria){
         categoriaService.atualizarCategoriaPorId(id, categoria);
         return ResponseEntity.ok().build();

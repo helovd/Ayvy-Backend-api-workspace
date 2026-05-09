@@ -31,11 +31,12 @@ public class PedidoService {
     }
 
     //UPDATE
+    // !!! Não será possível atualizar o Pedido uma vez feito
+    // !!! Pórem PedidoAtualizado está aqui caso seja necessário no futuro
+    /*
     public void atualizarPedidoPorId(Integer id, Pedido pedido){
         Pedido pedidoEntity = buscarPedidoPorId(id);
 
-        //Não será possível atualizar o Pedido uma vez feito
-        //Pórem PedidoAtualizado está aqui caso seja necessário no futuro
         Pedido pedidoAtualizado = Pedido.builder()
                 .status(pedidoEntity.getStatus())
                 .valor(pedidoEntity.getValor())
@@ -44,7 +45,7 @@ public class PedidoService {
                 .build();
 
         repository.saveAndFlush(pedidoAtualizado);
-    }
+    }*/
 
 
 }

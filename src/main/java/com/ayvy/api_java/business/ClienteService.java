@@ -44,11 +44,25 @@ public class ClienteService {
     }
 
     //Atualizar os dados do cliente 'Update':
-    public void atualizarClientePorId(Integer id, Cliente cliente){
+    public Cliente atualizarClientePorId(Integer id, Cliente cliente){
         Cliente clienteEntity = repository.findById(id).orElseThrow(
                 () -> new RuntimeException("Usuário/cliente não encontrado")
         );
 
+        if(cliente.getNome()!=null) {
+            clienteEntity.setNome(cliente.getNome());
+        }
+        if(cliente.getEmail()!=null) {
+            clienteEntity.setEmail(cliente.getEmail());
+        }
+        if(cliente.getCpf()!=null) {
+        clienteEntity.setTelefone(cliente.getTelefone());
+        }
+
+        return repository.saveAndFlush(clienteEntity);
+    }
+
+        /* ========= ! FORMA ANTIGA ! =============================================
         Cliente clienteAtualizado = Cliente.builder()
                 .email(cliente.getEmail() != null ?
                         cliente.getEmail() : clienteEntity.getEmail())
@@ -71,6 +85,6 @@ public class ClienteService {
                 .build();
 
         repository.saveAndFlush(clienteAtualizado);
-    }
+    }*/
 
 }
