@@ -13,8 +13,9 @@ public class MensagemService {
     public MensagemService(MensagemRepository repository) {this.repository = repository;}
 
     //CREATE
-    public void salvarMensagem(Mensagem mensagem){
+    public String salvarMensagem(Mensagem mensagem){
         repository.saveAndFlush(mensagem);
+        return ("Mensagem Enviada");
     }
 
     //READ
@@ -25,12 +26,13 @@ public class MensagemService {
     }
 
     //DELETE - por texto? por nome? seria a conversa toda?
-    public void deletarMensagemPorId(Integer id){
+    public String deletarMensagemPorId(Integer id){
         repository.deleteById(id);
+        return ("Mensagem Apagada");
     }
 
     //UPDATE - ou Editar mensagem no futuro
-    public Mensagem atualizarMensagemPorId(Integer id, Mensagem mensagem){
+    public String atualizarMensagemPorId(Integer id, Mensagem mensagem){
         Mensagem mensagemEntity = repository.findById(id).orElseThrow(
                 () -> new RuntimeException("Mensagem não encontrada")
         );
@@ -38,7 +40,8 @@ public class MensagemService {
         if(mensagem.getTexto() != null){
         mensagemEntity.setTexto(mensagem.getTexto());}
 
-        return repository.saveAndFlush(mensagemEntity);
+       repository.saveAndFlush(mensagemEntity);
+        return ("Mensagem Editada");
     }
 
   /* ========= ! FORMA ANTIGA ! =============================================

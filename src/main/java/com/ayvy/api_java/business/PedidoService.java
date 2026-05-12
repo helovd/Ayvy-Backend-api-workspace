@@ -13,8 +13,9 @@ public class PedidoService {
     public PedidoService(PedidoRepository repository) {this.repository = repository;}
 
     //CREATE
-    public void salvarPedido(Pedido pedido){
+    public String salvarPedido(Pedido pedido){
         repository.saveAndFlush(pedido);
+        return ("Pedido Confirmado!");
     }
 
     //READ
@@ -26,8 +27,9 @@ public class PedidoService {
     }
 
     //DELETE
-    public void deletarPedidoPorId(Integer id){
+    public String deletarPedidoPorId(Integer id){
         repository.deleteById(id);
+        return ("pedido cancelado!");
     }
 
     //UPDATE

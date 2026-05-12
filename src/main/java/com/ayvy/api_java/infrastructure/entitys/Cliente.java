@@ -47,4 +47,9 @@ public class Cliente {
     //!Necessário avaliação de segurança!
     @Column(name = "senha")
     private String senha;
+
+    @Column(name="nomeUsuario")
+    private String nomeUsuario;
+
+
 }

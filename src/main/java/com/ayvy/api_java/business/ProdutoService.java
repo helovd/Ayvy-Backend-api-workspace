@@ -22,8 +22,9 @@ public class ProdutoService {
     //Delete
 
     //"CREATE"
-    public void salvarProduto(Produto produto){
+    public String salvarProduto(Produto produto){
         repository.saveAndFlush(produto);
+        return ("Produto salvo!");
     }
 
     //"READ"
@@ -35,12 +36,13 @@ public class ProdutoService {
     }
 
     //"DELETE"
-    public void deletarProdutoPorId(Integer id){
+    public String deletarProdutoPorId(Integer id){
         repository.deleteById(id);
+        return ("Produto deletado.");
     }
 
     //"UPDATDE"
-    public void atualizarProdutoPorId(Integer id, Produto produto){
+    public String atualizarProdutoPorId(Integer id, Produto produto){
         Produto produtoEntity =  buscarProdutoPorId(id);
 
         if(produto.getNome_produto() != null){
@@ -49,8 +51,12 @@ public class ProdutoService {
         if(produto.getPreco() != null){
         produtoEntity.setPreco(produto.getPreco());
         }
+        if(produto.getDescricao() != null){
+            produtoEntity.setDescricao(produto.getDescricao());
+        }
 
         repository.saveAndFlush(produtoEntity);
+        return ("Produto atualizado com sucesso!");
 
     }
 

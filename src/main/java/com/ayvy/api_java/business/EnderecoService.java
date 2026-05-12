@@ -15,8 +15,9 @@ public class EnderecoService {
     //Criar CRUD
 
     //create
-    public void salvarEndereco(Endereco endereco) {
+    public String salvarEndereco(Endereco endereco) {
         this.repository.saveAndFlush(endereco);
+        return ("Endereço salvo!");
     }
 
     //read
@@ -26,7 +27,7 @@ public class EnderecoService {
                 () -> new RuntimeException("Endereço não encontrado")
         );
     }
-    //delete
+    //delete - É PERMITIDO DELETAR ENDEREÇO? - ESTARÁ COMO NULLABLE = FALSE
     public void deletarEnderecoPorId(Long id){
         repository.deleteById(id);
     }

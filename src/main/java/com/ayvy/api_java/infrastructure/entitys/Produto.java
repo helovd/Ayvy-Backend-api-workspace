@@ -3,6 +3,11 @@ package com.ayvy.api_java.infrastructure.entitys;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 //Pegar e settar informações de algum atributo com Lombok:
 @Getter
@@ -27,10 +32,16 @@ public class Produto {
     private String nome_produto;
 
     @Column(name = "preco")
-    private Float preco;
+    private BigDecimal preco;
 
-    //Faltam:
-    //Descrição String
-    //data_criação LocalDateTime
-    //preço deve ser BIGDECIMAL!!
+    @Column(name="descricao")
+    private String descricao;
+
+    //Data de criação e atualização da data toda vez que a entity sofre um UPDATE
+    @CreationTimestamp
+    @Column(name="criado_Em", nullable = false, updatable = false)
+    private LocalDateTime criadoEm;
+
+    @UpdateTimestamp
+    private LocalDateTime atualizadoEm;
 }

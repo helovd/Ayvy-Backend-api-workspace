@@ -2,6 +2,7 @@ package com.ayvy.api_java.infrastructure.entitys;
 //!!!!!!!!!!!!!!!VERIFICAR OS RELACIONAMENTOS NO BD - CONCEITUAL!!!!!!!!!
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -27,7 +28,8 @@ public class Pagamento {
     @Column (name = "valor")
     private BigDecimal valor;
 
-    @Column (name = "data")
+    @CreationTimestamp
+    @Column (name = "data", nullable = false)
     private LocalDateTime dataPagamento;
 
     @Column (name = "tipo")

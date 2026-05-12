@@ -1,6 +1,10 @@
 package com.ayvy.api_java.infrastructure.entitys;
 //!!!!!!!!!!!!!!!VERIFICAR OS RELACIONAMENTOS NO BD - CONCEITUAL!!!!!!!!!
 
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ESSA TABELA NÃO SERÁ NECESSÁRIA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 import jakarta.persistence.*;
 import lombok.*;
 
