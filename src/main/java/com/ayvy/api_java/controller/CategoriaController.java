@@ -5,8 +5,10 @@ import com.ayvy.api_java.infrastructure.entitys.Categoria;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/categoria")
+@RequestMapping("/categorias")
 
 public class CategoriaController {
 
@@ -20,20 +22,25 @@ public class CategoriaController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
-    public ResponseEntity<Categoria> buscarCateoriaPorNomeCatgoria(@RequestParam String nomeCategoria) {
+    @GetMapping("/{nomeCategoria}")
+    public ResponseEntity<Categoria> buscarCateoriaPorNomeCatgoria(@PathVariable String nomeCategoria) {
         return ResponseEntity.ok(categoriaService.buscarCategoriaPorNomeCategoria(nomeCategoria));
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deletarCategoriaPorId(@RequestParam Integer id,
+    @GetMapping
+    public ResponseEntity<List<Categoria>> listarCategorias() {
+        return ResponseEntity.ok(categoriaService.listarCategoria);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarCategoriaPorId(@PathVariable Integer id,
                                                       @RequestParam Categoria categoria) {
         categoriaService.deletarCategoriaPorId(id);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping
-    public ResponseEntity<Void> atualizarCategoriaPorId(@RequestParam Integer id,
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizarCategoriaPorId(@PathVariable Integer id,
                                                         @RequestBody Categoria categoria){
         categoriaService.atualizarCategoriaPorId(id, categoria);
         return ResponseEntity.ok().build();

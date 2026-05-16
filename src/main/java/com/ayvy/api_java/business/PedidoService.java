@@ -4,6 +4,8 @@ import com.ayvy.api_java.infrastructure.entitys.Pedido;
 import com.ayvy.api_java.infrastructure.repository.PedidoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 
 public class PedidoService {
@@ -24,6 +26,10 @@ public class PedidoService {
         return repository.findById(id).orElseThrow(
                 () -> new RuntimeException("Pedido não encontrado")
         );
+    }
+
+    public List<Pedido> listarPedidos(){
+        return repository.findAll();
     }
 
     //DELETE

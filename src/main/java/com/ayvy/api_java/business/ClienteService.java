@@ -4,6 +4,8 @@ import com.ayvy.api_java.infrastructure.entitys.Cliente;
 import com.ayvy.api_java.infrastructure.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 
 public class ClienteService {
@@ -38,9 +40,13 @@ public class ClienteService {
         );
     }
 
+    public List<Cliente> listarClientes(){
+        return repository.findAll();
+    }
+
     //deletar cliente por email 'DELETE' --> função criada no repository
-    public void deletarClientePorEmail (String email){
-        repository.deleteByEmail(email);
+    public void deletarClientePorId (Integer id){
+        repository.deleteById(id);
     }
 
     //Atualizar os dados do cliente 'Update':

@@ -4,6 +4,8 @@ import com.ayvy.api_java.infrastructure.entitys.Endereco;
 import com.ayvy.api_java.infrastructure.repository.EnderecoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 
 public class EnderecoService {
@@ -16,17 +18,22 @@ public class EnderecoService {
 
     //create
     public String salvarEndereco(Endereco endereco) {
-        this.repository.saveAndFlush(endereco);
+        repository.saveAndFlush(endereco);
         return ("Endereço salvo!");
     }
 
     //read
     public Endereco buscarEnderecoPorId(Long id) {
 
-        return this.repository.findById(id).orElseThrow(
+        return repository.findById(id).orElseThrow(
                 () -> new RuntimeException("Endereço não encontrado")
         );
     }
+
+    public List<Endereco> listarEnderecos(){
+        return repository.findAll();
+    }
+
     //delete - É PERMITIDO DELETAR ENDEREÇO? - ESTARÁ COMO NULLABLE = FALSE
     public void deletarEnderecoPorId(Long id){
         repository.deleteById(id);

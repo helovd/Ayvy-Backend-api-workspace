@@ -5,10 +5,12 @@ import com.ayvy.api_java.infrastructure.entitys.Cliente;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 //A uri:
-//Vai fazer requisições pela 'localhost:8080/cliente'
-@RequestMapping("/cliente")
+//Vai fazer requisições pela 'localhost:8080/clientes'
+@RequestMapping("/clientes")
 
 public class ClienteController {
 
@@ -26,21 +28,26 @@ public class ClienteController {
     }
 
     //Para buscar:
-    @GetMapping
-    public ResponseEntity<Cliente> buscarClientePorEmail(@RequestParam String email) {
+    @GetMapping("/{email}")
+    public ResponseEntity<Cliente> buscarClientePorEmail(@PathVariable String email) {
         return ResponseEntity.ok(clienteService.buscarClientePorEmail(email));
     }
 
+    @GetMapping
+    public ResponseEntity <List<Cliente>> listarClientes() {
+        return ResponseEntity.ok(clienteService.listarClientes());
+    }
+
     //Para deletar:
-    @DeleteMapping
-    public ResponseEntity<Void> deletarClientePorEmail(@RequestParam String email){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarClientePorId(@PathVariable Integer id){
         clienteService.deletarClientePorEmail(email);
         return ResponseEntity.ok().build();
     }
 
     //Fazer alterações em TODOS os campos:
-    @PutMapping
-    public ResponseEntity<Void> atualizarClientePorId(@RequestParam Integer id,
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizarClientePorId(@PathVariable Integer id,
                                                       @RequestBody Cliente cliente){
         clienteService.atualizarClientePorId(id, cliente);
         return ResponseEntity.ok().build();

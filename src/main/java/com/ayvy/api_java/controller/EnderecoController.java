@@ -5,8 +5,10 @@ import com.ayvy.api_java.infrastructure.entitys.Endereco;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/endereco")
+@RequestMapping("/enderecos")
 
 public class EnderecoController {
 
@@ -20,19 +22,24 @@ public class EnderecoController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
-    public ResponseEntity<Endereco> buscarEnderecoPorId(@RequestParam Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Endereco> buscarEnderecoPorId(@PathVariable Long id) {
         return ResponseEntity.ok(enderecoService.buscarEnderecoPorId(id));
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deletarEnderecoPorId(@RequestParam Long id) {
+    @GetMapping
+    public ResponseEntity<List<Endereco>> listarEnderecos() {
+        return ResponseEntity.ok(enderecoService.listarEnderecos());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarEnderecoPorId(@PathVariable Long id) {
         enderecoService.deletarEnderecoPorId(id);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping
-    public ResponseEntity<Void> atualizarEnderecoPorId(@RequestParam Long id,
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizarEnderecoPorId(@PathVariable Long id,
                                                         @RequestBody Endereco endereco){
         enderecoService.atualizarEnderecoPorId(id, endereco);
         return ResponseEntity.ok().build();

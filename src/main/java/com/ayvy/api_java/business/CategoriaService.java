@@ -4,6 +4,8 @@ import com.ayvy.api_java.infrastructure.entitys.Categoria;
 import com.ayvy.api_java.infrastructure.repository.CategoriaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoriaService {
 
@@ -23,6 +25,10 @@ public class CategoriaService {
                 //Uma exceção personalizada:
                 () -> new RuntimeException("Categoria não encontrada")
         );
+    }
+
+    public List<Categoria> listarCategorias(){
+        return repository.findAll();
     }
 
     //DELETE

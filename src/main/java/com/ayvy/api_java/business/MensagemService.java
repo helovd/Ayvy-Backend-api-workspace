@@ -4,6 +4,10 @@ import com.ayvy.api_java.infrastructure.entitys.Mensagem;
 import com.ayvy.api_java.infrastructure.repository.MensagemRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+//????????????????????? USAREMOS ISSO COMO ENTIDADE? ???????????????
+
 @Service
 
 public class MensagemService {
@@ -23,6 +27,10 @@ public class MensagemService {
         return repository.findByTextoOrNome(texto, nome).orElseThrow(
                 () -> new RuntimeException("Conversa não encontrada")
         );
+    }
+
+    public List<Mensagem> listarMensagens(){
+        return repository.findAll();
     }
 
     //DELETE - por texto? por nome? seria a conversa toda?

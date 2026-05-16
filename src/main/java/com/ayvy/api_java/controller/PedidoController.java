@@ -5,8 +5,10 @@ import com.ayvy.api_java.infrastructure.entitys.Pedido;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/pedido")
+@RequestMapping("/pedidos")
 
 public class PedidoController {
 
@@ -20,13 +22,18 @@ public class PedidoController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
-    public ResponseEntity<Pedido> buscarPedidoPorId(@RequestParam int id){
+    @GetMapping("/{id}")
+    public ResponseEntity<Pedido> buscarPedidoPorId(@PathVariable int id){
         return ResponseEntity.ok(pedidoService.buscarPedidoPorId(id));
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deletarPedidoPorId(@RequestParam int id){
+    @GetMapping
+    public ResponseEntity<List<Pedido>> listarPedidos(){
+        return ResponseEntity.ok(pedidoService.listarPedidos());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarPedidoPorId(@PathVariable int id){
         pedidoService.deletarPedidoPorId(id);
         return ResponseEntity.ok().build();
     }

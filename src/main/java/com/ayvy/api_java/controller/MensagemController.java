@@ -5,8 +5,12 @@ import com.ayvy.api_java.infrastructure.entitys.Mensagem;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+//????????????????????? USAREMOS ISSO COMO ENTIDADE? ???????????????
+
 @RestController
-@RequestMapping("/mensagem")
+@RequestMapping("/mensagens")
 
 public class MensagemController {
 
@@ -20,19 +24,25 @@ public class MensagemController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
-    public ResponseEntity<Mensagem> buscarMensagemPorTextoOuNome(@RequestParam String texto, String nome){
+    //CORRIGIR FORMA DE BUSCAR, É COM 1 OU DOIS?
+    @GetMapping("/{texto}")
+    public ResponseEntity<Mensagem> buscarMensagemPorTextoOuNome(@PathVariable String texto, String nome){
         return ResponseEntity.ok(mensagemService.buscarMensagemPorTextoOuNome(texto, nome));
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deletarMensagemPorId(@RequestParam Integer id){
+    @GetMapping
+    public ResponseEntity <List<Mensagem>> listarMensagens(){
+        return ResponseEntity.ok(mensagemService.listarMensagens());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarMensagemPorId(@PathVariable Integer id){
         mensagemService.deletarMensagemPorId(id);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping
-    public ResponseEntity<Void> atualizarMensagemPorId(@RequestParam Integer id,
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizarMensagemPorId(@PathVariable Integer id,
                                                        @RequestBody Mensagem mensagem){
         mensagemService.atualizarMensagemPorId(id, mensagem);
         return ResponseEntity.ok().build();

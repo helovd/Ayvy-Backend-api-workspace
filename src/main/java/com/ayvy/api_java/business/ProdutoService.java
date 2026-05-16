@@ -4,6 +4,8 @@ import com.ayvy.api_java.infrastructure.entitys.Produto;
 import com.ayvy.api_java.infrastructure.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 
 public class ProdutoService {
@@ -33,6 +35,11 @@ public class ProdutoService {
         return repository.findById(id).orElseThrow(
                 () -> new RuntimeException("Produto não encontrado")
         );
+    }
+
+    //"READ"
+    public List<Produto> listarProdutos(){
+        return repository.findAll();
     }
 
     //"DELETE"

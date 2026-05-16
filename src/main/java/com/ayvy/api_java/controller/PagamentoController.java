@@ -7,8 +7,10 @@ import com.ayvy.api_java.infrastructure.entitys.Pagamento;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/pagamento")
+@RequestMapping("/pagamentos")
 
 public class PagamentoController {
 
@@ -23,19 +25,24 @@ public class PagamentoController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
-    public ResponseEntity<Pagamento> buscarPagamentoPorId(@RequestParam Integer id){
+    @GetMapping("/{id}")
+    public ResponseEntity<Pagamento> buscarPagamentoPorId(@PathVariable Integer id){
         return ResponseEntity.ok(pagamentoService.buscarPagamentoPorId(id));
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deletarPagamentoPorId(@RequestParam Integer id){
+    @GetMapping
+    public ResponseEntity<List<Pagamento>> listarPagamentos(){
+        return ResponseEntity.ok(pagamentoService.listarPagamentos());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarPagamentoPorId(@PathVariable Integer id){
         pagamentoService.deletarPagamentoPorId(id);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping
-    public ResponseEntity<Void> atualizarPagamentoPorId(@RequestParam Integer id,
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizarPagamentoPorId(@PathVariable Integer id,
                                                         @RequestBody Pagamento pagamento){
         pagamentoService.atualizarPagamentoPorId(id, pagamento);
         return ResponseEntity.ok().build();

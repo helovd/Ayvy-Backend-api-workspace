@@ -4,6 +4,8 @@ import com.ayvy.api_java.infrastructure.entitys.Pagamento;
 import com.ayvy.api_java.infrastructure.repository.PagamentoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 
 public class PagamentoService {
@@ -22,6 +24,10 @@ public class PagamentoService {
         return repository.findById(id).orElseThrow(
                 () -> new RuntimeException("Pagamento não encontrado")
         );
+    }
+
+    public List<Pagamento> listarPagamentos(){
+        return repository.findAll();
     }
 
     //DELETE
